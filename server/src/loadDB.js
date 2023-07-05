@@ -2,27 +2,28 @@ const { Country } = require('./db');
 const axios = require('axios');
 
 const loadDb = async () => {
-	const countriesData = Country.findAll();
-	if (!countriesData.length) {
-		const dataApi = await axios.get('http://localhost:5000/countries');
-		const infoApi = await dataApi.data.map((ccontry) => {
+	const dataDB = Country.findAll();
+	if (!dataDB.length) {
+		const countriesData = await axios.get('http://localhost:5000/countries');
+		const countriesToCreate = await countriesData.data.map((country) => {
 			return {
-				id: ccontry.cca3,
-				name: ccontry.name.official,
-				image: ccontry.flags.png,
-				continent: ccontry.continents[0],
-				capital: ccontry.capital ? ccontry.capital[0] : 'Capital',
-				subregion: ccontry.subregion ? ccontry.subregion : 'Subregion',
-				area: ccontry.area,
-				population: ccontry.population,
+				id: country.cca3,
+				name: country.name.official,
+				image: country.flags.png,
+				continent: country.continents[0],
+				capital: country.capital ? country.capital[0] : 'Capital',
+				subregion: country.subregion ? country.subregion : 'Subregion',
+				area: country.area,
+				population: country.population,
 			};
 		});
-		for (let i = 0; i < infoApi.length; i++) {
-			await Country.findOrCreate({
-				where: { name: infoApi[i].name },
-				defaults: infoApi[i],
+		Country.bulkCreate(countriesToCreate)
+			.then(() => {
+				console.log('Registros creados exitosamente.');
+			})
+			.catch((error) => {
+				console.error('Error al crear registros:', error);
 			});
-		}
 	}
 };
 
