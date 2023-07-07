@@ -1,28 +1,46 @@
-const { Country } = require('../db');
+const { Country, Activity } = require('../db');
+const { Op } = require('sequelize');
 
 const getCountries = async (req, res) => {
 	try {
+		const { name } = req.query;
+
+		if (name) {
+			const response = await Country.findOne({
+				where: { name: { [Op.iLike]: `%${name}%` } },
+			});
+			return res.status(200).json(response);
+		}
+
 		const response = await Country.findAll();
 		res.status(200).json(response);
 	} catch (error) {
-		res.status(400).send(message.error);
+		res.status(500).json({ error: error.message });
 	}
 };
 
 const getCountriesById = async (req, res) => {
-	const id = req.query;
 	try {
-		const response = await Country.findOne({ where: { id } });
-		res.status(200).json(response);
+		const { id } = req.params;
+
+		if (id) {
+			const country = await Country.findByPk(id, {
+				include: [
+					{
+						model: Activity,
+						through: { attributes: [] },
+					},
+				],
+				attributes: { exclude: ['country_activity'] },
+			});
+			res.status(200).json(country);
+		}
 	} catch (error) {
-		res.status(400).send(message.error);
+		res.status(500).json({ error: error.message });
 	}
 };
-
-const getCountriesByName = async (req, res) => {};
 
 module.exports = {
 	getCountries,
 	getCountriesById,
-	getCountriesByName,
 };

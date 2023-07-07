@@ -22,9 +22,9 @@ module.exports = (sequelize) => {
 			},
 			duration: {
 				type: DataTypes.INTEGER,
-				allowNull: true,
+				allowNull: false,
 			},
-			Season: {
+			season: {
 				type: DataTypes.STRING,
 			},
 		},
