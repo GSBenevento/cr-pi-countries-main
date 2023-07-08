@@ -1,8 +1,6 @@
-import { useSelector } from 'react-redux';
 import Card from '../Card/Card';
 import style from './CardsContainer.module.css';
-const CardsContainer = () => {
-	const countries = useSelector((state) => state.countries);
+const CardsContainer = ({ countries }) => {
 	return (
 		<div className={style.container}>
 			{countries.map((country) => {
