@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	getCountries,
 	filterByContinent,
-	orderCountries,
+	orderCountriesByName,
+	orderCountriesByPopulation,
 } from '../../redux/action';
 
 const Home = () => {
@@ -20,9 +21,14 @@ const Home = () => {
 		dispatch(filterByContinent(event.target.value));
 	};
 
-	const handleOrder = (event) => {
+	const handleOrderByName = (event) => {
 		event.preventDefault();
-		dispatch(orderCountries(event.target.value));
+		dispatch(orderCountriesByName(event.target.value));
+	};
+
+	const handleOrderByPopulation = (event) => {
+		event.preventDefault();
+		dispatch(orderCountriesByPopulation(event.target.value));
 	};
 
 	return (
@@ -30,6 +36,7 @@ const Home = () => {
 			<select placeholder='Continent' onChange={handleFilterContinent}>
 				<option value={'AllCountries'}>All Countries</option>
 				<option value={'Africa'}>Africa</option>
+				<option value={'Antarctica'}>Antarctica</option>
 				<option value={'Asia'}>Asia</option>
 				<option value={'Europe'}>Europe</option>
 				<option value={'North America'}>North America</option>
@@ -37,8 +44,16 @@ const Home = () => {
 				<option value={'South America'}>South America</option>
 			</select>
 
-			<select placeholder='Order' onChange={handleOrder}>
-				<option value={'AllCountries'}>Disorderly</option>
+			<select placeholder='OrderByName' onChange={handleOrderByName}>
+				<option value={'AllCountries'}>Alphabetical order</option>
+				<option value={'A'}>Ascending</option>
+				<option value={'D'}>Descending</option>
+			</select>
+
+			<select
+				placeholder='OrderByPopulation'
+				onChange={handleOrderByPopulation}>
+				<option value={'AllCountries'}>Population order</option>
 				<option value={'A'}>Ascending</option>
 				<option value={'D'}>Descending</option>
 			</select>

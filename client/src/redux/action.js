@@ -3,7 +3,8 @@ import {
 	GET_COUNTRIES,
 	GET_COUNTRY_BY_ID,
 	FILTER_BY_CONTINENT,
-	ORDER_COUNTRIES,
+	ORDER_COUNTRIES_BY_NAME,
+	ORDER_COUNTRIES_BY_POPULATION,
 } from './actionTypes';
 
 const getCountries = () => {
@@ -41,11 +42,24 @@ const filterByContinent = (continent) => {
 	};
 };
 
-const orderCountries = (order) => {
+const orderCountriesByName = (order) => {
 	return {
-		type: ORDER_COUNTRIES,
+		type: ORDER_COUNTRIES_BY_NAME,
 		payload: order,
 	};
 };
 
-export { getCountries, getCountriesById, filterByContinent, orderCountries };
+const orderCountriesByPopulation = (order) => {
+	return {
+		type: ORDER_COUNTRIES_BY_POPULATION,
+		payload: order,
+	};
+};
+
+export {
+	getCountries,
+	getCountriesById,
+	filterByContinent,
+	orderCountriesByName,
+	orderCountriesByPopulation,
+};
