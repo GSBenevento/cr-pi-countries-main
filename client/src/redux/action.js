@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { GET_COUNTRIES, GET_COUNTRY_BY_ID } from './actionTypes';
+import {
+	GET_COUNTRIES,
+	GET_COUNTRY_BY_ID,
+	FILTER_BY_CONTINENT,
+	ORDER_COUNTRIES,
+} from './actionTypes';
 
 const getCountries = () => {
 	const endpoint = 'http://localhost:3001/countries';
@@ -29,4 +34,18 @@ const getCountriesById = (id) => {
 	};
 };
 
-export { getCountries, getCountriesById };
+const filterByContinent = (continent) => {
+	return {
+		type: FILTER_BY_CONTINENT,
+		payload: continent,
+	};
+};
+
+const orderCountries = (order) => {
+	return {
+		type: ORDER_COUNTRIES,
+		payload: order,
+	};
+};
+
+export { getCountries, getCountriesById, filterByContinent, orderCountries };

@@ -5,12 +5,12 @@ import { useParams } from 'react-router-dom';
 
 const Detail = () => {
 	const dispatch = useDispatch();
-	const country = useSelector((state) => state.countries);
+	const country = useSelector((state) => state.detail);
 	const { id } = useParams();
 
 	useEffect(() => {
 		dispatch(getCountriesById(id));
-	}, [id]);
+	}, []);
 	return (
 		<>
 			<img src={country?.image} />
