@@ -6,7 +6,7 @@ const getCountries = async (req, res) => {
 		const { name } = req.query;
 
 		if (name) {
-			const response = await Country.findOne({
+			const response = await Country.findAll({
 				where: { name: { [Op.iLike]: `%${name}%` } },
 			});
 			return res.status(200).json(response);

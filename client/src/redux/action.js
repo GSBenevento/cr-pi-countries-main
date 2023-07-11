@@ -5,6 +5,7 @@ import {
 	FILTER_BY_CONTINENT,
 	ORDER_COUNTRIES_BY_NAME,
 	ORDER_COUNTRIES_BY_POPULATION,
+	GET_COUNTRY_BY_NAME,
 } from './actionTypes';
 
 const getCountries = () => {
@@ -35,6 +36,19 @@ const getCountriesById = (id) => {
 	};
 };
 
+const getCountryByName = (name) => {
+	const endpoint = 'http://localhost:3001/countries';
+	return async (dispatch) => {
+		try {
+			const { data } = await axios(`${endpoint}?name=${name}`);
+
+			return dispatch({ type: GET_COUNTRY_BY_NAME, payload: data });
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+};
+
 const filterByContinent = (continent) => {
 	return {
 		type: FILTER_BY_CONTINENT,
@@ -59,6 +73,7 @@ const orderCountriesByPopulation = (order) => {
 export {
 	getCountries,
 	getCountriesById,
+	getCountryByName,
 	filterByContinent,
 	orderCountriesByName,
 	orderCountriesByPopulation,

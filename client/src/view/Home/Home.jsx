@@ -1,5 +1,5 @@
 import CardsContainer from '../../components/CardsContainer/CardsContainer';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	getCountries,
@@ -7,14 +7,24 @@ import {
 	orderCountriesByName,
 	orderCountriesByPopulation,
 } from '../../redux/action';
+import Paginado from '../../components/Paginado/Paginado';
 
 const Home = () => {
 	const dispatch = useDispatch();
 	const countries = useSelector((state) => state.countries);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [countriesForPage, setCountriesForPage] = useState(10);
+	const start = (currentPage - 1) * countriesForPage;
+	const end = start + countriesForPage;
+	const pageElements = countries.slice(start, end);
 
 	useEffect(() => {
 		dispatch(getCountries());
 	}, []);
+
+	const paginado = (pageNumber) => {
+		setCurrentPage(pageNumber);
+	};
 
 	const handleFilterContinent = (event) => {
 		event.preventDefault();
@@ -58,9 +68,15 @@ const Home = () => {
 				<option value={'D'}>Descending</option>
 			</select>
 
+			<Paginado
+				countriesForPage={countriesForPage}
+				countries={countries.length}
+				paginado={paginado}
+				currentPage={currentPage}
+			/>
 			<h1>Esta es la vista de Home</h1>
 
-			<CardsContainer countries={countries} />
+			<CardsContainer pageElements={pageElements} />
 		</>
 	);
 };

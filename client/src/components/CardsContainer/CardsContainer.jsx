@@ -1,9 +1,9 @@
 import Card from '../Card/Card';
 import style from './CardsContainer.module.css';
-const CardsContainer = ({ countries }) => {
+const CardsContainer = ({ pageElements }) => {
 	return (
 		<div className={style.container}>
-			{countries.map((country) => {
+			{pageElements.map((country) => {
 				return (
 					<Card
 						key={country.id}

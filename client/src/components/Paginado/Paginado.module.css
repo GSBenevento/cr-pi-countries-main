@@ -1,0 +1,32 @@
+nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+li {
+    margin: 0 5px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.number {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.number.active {
+    background-color: #ccc;
+    font-weight: bold;
+}

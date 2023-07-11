@@ -1,6 +1,7 @@
 import {
 	GET_COUNTRIES,
 	GET_COUNTRY_BY_ID,
+	GET_COUNTRY_BY_NAME,
 	FILTER_BY_CONTINENT,
 	ORDER_COUNTRIES_BY_NAME,
 	ORDER_COUNTRIES_BY_POPULATION,
@@ -18,7 +19,16 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case GET_COUNTRY_BY_ID:
-			return { ...state, detail: action.payload };
+			return {
+				...state,
+				detail: action.payload,
+			};
+
+		case GET_COUNTRY_BY_NAME:
+			return {
+				...state,
+				countries: action.payload,
+			};
 
 		case FILTER_BY_CONTINENT:
 			const allCountries = [...state.allCountries];
