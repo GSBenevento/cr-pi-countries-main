@@ -1,11 +1,27 @@
-.container{
+.container {
+    display: grid;
     border: 1px solid black;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 10px;
+    width: auto;
+    height: 50%;
+    margin-left: 15px;
 }
 
-.link{
+.link {
     text-decoration: none;
     color: black;
+}
+
+.img {
+    width: 13rem;
+    height: 7rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.text {
+    width: 13rem;
+    height: auto;
+}
+
+.container:hover{
+    transform: scale(1.1);
 }

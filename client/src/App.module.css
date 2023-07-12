@@ -1,0 +1,9 @@
+.container {
+    background-image: url('../../assets/481285.jpg');
+    background-size: cover;
+    /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+    background-position: center;
+    /* Centra la imagen dentro del contenedor */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+}

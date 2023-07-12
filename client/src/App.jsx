@@ -2,12 +2,13 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Home, Detail, Form, Landing } from './view/index';
 import NavBar from './components/NavBar/NavBar';
+import style from './App.module.css';
 
 function App() {
 	const location = useLocation();
 
 	return (
-		<>
+		<div>
 			{location.pathname !== '/' && <NavBar />}
 			<Routes>
 				<Route exact path='/' element={<Landing />} />
@@ -15,7 +16,7 @@ function App() {
 				<Route path='/home/:id' element={<Detail />} />
 				<Route path='/form' element={<Form />} />
 			</Routes>
-		</>
+		</div>
 	);
 }
 

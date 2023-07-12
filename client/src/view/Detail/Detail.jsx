@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountriesById } from '../../redux/action';
+import { getCountriesById, getActivities } from '../../redux/action';
 import { useParams } from 'react-router-dom';
+import ActivitiesContainer from '../../components/ActivitiesContainer/ActivitiesContainer';
 
 const Detail = () => {
 	const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const Detail = () => {
 
 	useEffect(() => {
 		dispatch(getCountriesById(id));
+		dispatch(getActivities());
 	}, []);
 	return (
 		<>
@@ -20,6 +22,9 @@ const Detail = () => {
 			<h2>Subregion: {country?.subregion}</h2>
 			<h2>Area: {country?.area}</h2>
 			<h2>population: {country?.population}</h2>
+			<div>
+				<ActivitiesContainer activities={country.Activities} />
+			</div>
 		</>
 	);
 };

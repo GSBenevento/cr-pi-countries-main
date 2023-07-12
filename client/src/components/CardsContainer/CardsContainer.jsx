@@ -3,7 +3,7 @@ import style from './CardsContainer.module.css';
 const CardsContainer = ({ pageElements }) => {
 	return (
 		<div className={style.container}>
-			{pageElements.map((country) => {
+			{pageElements?.map((country) => {
 				return (
 					<Card
 						key={country.id}

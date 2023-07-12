@@ -1,6 +1,7 @@
 import CardsContainer from '../../components/CardsContainer/CardsContainer';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import style from './Home.module.css';
 import {
 	getCountries,
 	filterByContinent,
@@ -42,7 +43,7 @@ const Home = () => {
 	};
 
 	return (
-		<>
+		<div className={style.container}>
 			<select placeholder='Continent' onChange={handleFilterContinent}>
 				<option value={'AllCountries'}>All Countries</option>
 				<option value={'Africa'}>Africa</option>
@@ -50,7 +51,7 @@ const Home = () => {
 				<option value={'Asia'}>Asia</option>
 				<option value={'Europe'}>Europe</option>
 				<option value={'North America'}>North America</option>
-				<option value={'Ocenia'}>Oceania</option>
+				<option value={'Oceania'}>Oceania</option>
 				<option value={'South America'}>South America</option>
 			</select>
 
@@ -68,16 +69,15 @@ const Home = () => {
 				<option value={'D'}>Descending</option>
 			</select>
 
+			<CardsContainer pageElements={pageElements} />
+
 			<Paginado
 				countriesForPage={countriesForPage}
 				countries={countries.length}
 				paginado={paginado}
 				currentPage={currentPage}
 			/>
-			<h1>Esta es la vista de Home</h1>
-
-			<CardsContainer pageElements={pageElements} />
-		</>
+		</div>
 	);
 };
 

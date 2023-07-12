@@ -43,8 +43,8 @@ const Paginado = ({ countriesForPage, countries, paginado, currentPage }) => {
 	};
 
 	return (
-		<nav>
-			<ul>
+		<nav className={style.nav}>
+			<ul className={style.ul}>
 				<button onClick={prevPage} disabled={currentPage === 1}>
 					Prev
 				</button>
@@ -55,7 +55,9 @@ const Paginado = ({ countriesForPage, countries, paginado, currentPage }) => {
 								number === currentPage ? style.number.active : style.number
 							}
 							key={number}>
-							<a onClick={() => paginado(number)}>{number}</a>
+							<a onClick={() => paginado(number)} className={style.a}>
+								{number}
+							</a>
 						</li>
 					))}
 				<button

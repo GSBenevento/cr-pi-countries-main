@@ -6,6 +6,7 @@ import {
 	ORDER_COUNTRIES_BY_NAME,
 	ORDER_COUNTRIES_BY_POPULATION,
 	GET_COUNTRY_BY_NAME,
+	GET_ACTIVITIES,
 } from './actionTypes';
 
 const getCountries = () => {
@@ -70,6 +71,19 @@ const orderCountriesByPopulation = (order) => {
 	};
 };
 
+const getActivities = () => {
+	const endpoint = 'http://localhost:3001/activities';
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.get(endpoint);
+
+			return dispatch({ type: GET_ACTIVITIES, payload: data });
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+};
+
 export {
 	getCountries,
 	getCountriesById,
@@ -77,4 +91,5 @@ export {
 	filterByContinent,
 	orderCountriesByName,
 	orderCountriesByPopulation,
+	getActivities,
 };

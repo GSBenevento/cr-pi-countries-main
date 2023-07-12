@@ -5,9 +5,16 @@ import {
 	FILTER_BY_CONTINENT,
 	ORDER_COUNTRIES_BY_NAME,
 	ORDER_COUNTRIES_BY_POPULATION,
+	GET_ACTIVITIES,
 } from './actionTypes';
 
-const initialState = { countries: [], allCountries: [], detail: [] };
+const initialState = {
+	countries: [],
+	allCountries: [],
+	detail: [],
+	activities: [],
+	allActivities: [],
+};
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -73,6 +80,12 @@ const reducer = (state = initialState, action) => {
 						: allCountriesCopyByPopulation.sort(
 								(a, b) => b.population - a.population
 						  ),
+			};
+		case GET_ACTIVITIES:
+			return {
+				...state,
+				activities: action.payload,
+				allActivities: action.payload,
 			};
 		default:
 			return { ...state };
