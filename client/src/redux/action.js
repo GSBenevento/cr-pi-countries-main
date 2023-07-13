@@ -3,6 +3,7 @@ import {
 	GET_COUNTRIES,
 	GET_COUNTRY_BY_ID,
 	FILTER_BY_CONTINENT,
+	FILTER_BY_ACTIVITY,
 	ORDER_COUNTRIES_BY_NAME,
 	ORDER_COUNTRIES_BY_POPULATION,
 	GET_COUNTRY_BY_NAME,
@@ -57,6 +58,13 @@ const filterByContinent = (continent) => {
 	};
 };
 
+const filterByActivity = (activity) => {
+	return {
+		type: FILTER_BY_ACTIVITY,
+		payload: activity,
+	};
+};
+
 const orderCountriesByName = (order) => {
 	return {
 		type: ORDER_COUNTRIES_BY_NAME,
@@ -89,6 +97,7 @@ export {
 	getCountriesById,
 	getCountryByName,
 	filterByContinent,
+	filterByActivity,
 	orderCountriesByName,
 	orderCountriesByPopulation,
 	getActivities,

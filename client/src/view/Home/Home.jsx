@@ -5,6 +5,7 @@ import style from './Home.module.css';
 import {
 	getCountries,
 	filterByContinent,
+	filterByActivity,
 	orderCountriesByName,
 	orderCountriesByPopulation,
 } from '../../redux/action';
@@ -13,6 +14,7 @@ import Paginado from '../../components/Paginado/Paginado';
 const Home = () => {
 	const dispatch = useDispatch();
 	const countries = useSelector((state) => state.countries);
+	const activities = useSelector((state) => state.activities);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [countriesForPage, setCountriesForPage] = useState(10);
 	const start = (currentPage - 1) * countriesForPage;
@@ -30,6 +32,11 @@ const Home = () => {
 	const handleFilterContinent = (event) => {
 		event.preventDefault();
 		dispatch(filterByContinent(event.target.value));
+	};
+
+	const handleFilterActivities = (event) => {
+		event.preventDefault();
+		dispatch(filterByActivity(event.target.value));
 	};
 
 	const handleOrderByName = (event) => {
@@ -53,6 +60,37 @@ const Home = () => {
 				<option value={'North America'}>North America</option>
 				<option value={'Oceania'}>Oceania</option>
 				<option value={'South America'}>South America</option>
+			</select>
+
+			<select onChange={handleFilterActivities}>
+				{[
+					'Activities',
+					'allActivities',
+					'Sightseeing',
+					'Swimming',
+					'Hiking',
+					'Exploring',
+					'Visiting monuments',
+					'Trying local cuisine',
+					'Taking photographs',
+					'Shopping',
+					'Relaxing on the beach',
+					'Enjoying nature',
+					'Doing water sports',
+					'Visiting museums',
+					'Exploring local markets',
+					'Wildlife watching',
+					'Participating in cultural festivals',
+					'Engaging in historical tourism',
+					'Practicing outdoor sports',
+					'Having a picnic',
+					'Visiting theme parks',
+					'Exploring the nightlife',
+				].map((activity) => (
+					<option key={activity} value={activity}>
+						{activity}
+					</option>
+				))}
 			</select>
 
 			<select placeholder='OrderByName' onChange={handleOrderByName}>

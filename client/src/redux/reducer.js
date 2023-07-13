@@ -3,6 +3,7 @@ import {
 	GET_COUNTRY_BY_ID,
 	GET_COUNTRY_BY_NAME,
 	FILTER_BY_CONTINENT,
+	FILTER_BY_ACTIVITY,
 	ORDER_COUNTRIES_BY_NAME,
 	ORDER_COUNTRIES_BY_POPULATION,
 	GET_ACTIVITIES,
@@ -49,6 +50,28 @@ const reducer = (state = initialState, action) => {
 				...state,
 				countries: countriesByContinent,
 			};
+		case FILTER_BY_ACTIVITY:
+			const allCountriesCopy = [...state.allCountries];
+			console.log('allCountriesCopy:', allCountriesCopy);
+			console.log('action.payload:', action.payload);
+			const countriesByActivities =
+				action.payload === 'Activities'
+					? allCountriesCopy
+					: action.payload === 'allActivities'
+					? allCountriesCopy.filter((country) => country.Activities.length > 0)
+					: allCountriesCopy.filter((country) =>
+							country.Activities.some(
+								(activity) => activity.name === action.payload
+							)
+					  );
+
+			console.log('countriesByActivities:', countriesByActivities);
+
+			return {
+				...state,
+				countries: countriesByActivities,
+			};
+
 		case ORDER_COUNTRIES_BY_NAME:
 			const allCountriesCopyByName = [...state.allCountries];
 			return {

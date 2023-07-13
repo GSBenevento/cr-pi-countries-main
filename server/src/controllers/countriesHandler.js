@@ -8,11 +8,26 @@ const getCountries = async (req, res) => {
 		if (name) {
 			const response = await Country.findAll({
 				where: { name: { [Op.iLike]: `%${name}%` } },
+				include: [
+					{
+						model: Activity,
+						through: { attributes: [] },
+					},
+				],
+				attributes: { exclude: ['country_activity'] },
 			});
 			return res.status(200).json(response);
 		}
 
-		const response = await Country.findAll();
+		const response = await Country.findAll({
+			include: [
+				{
+					model: Activity,
+					through: { attributes: [] },
+				},
+			],
+			attributes: { exclude: ['country_activity'] },
+		});
 		res.status(200).json(response);
 	} catch (error) {
 		res.status(500).json({ error: error.message });

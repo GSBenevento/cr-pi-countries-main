@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities } from '../../redux/action';
 import ActivitiesContainer from '../../components/ActivitiesContainer/ActivitiesContainer';
-import { useActionData } from 'react-router-dom';
 
 const Form = () => {
 	const dispatch = useDispatch();

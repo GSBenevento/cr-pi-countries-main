@@ -29,7 +29,15 @@ const postActivities = async (req, res) => {
 
 const getActivities = async (req, res) => {
 	try {
-		const response = await Activity.findAll();
+		const response = await Activity.findAll({
+			include: [
+				{
+					model: Country,
+					through: { attributes: [] },
+				},
+			],
+			attributes: { exclude: ['country_activity'] },
+		});
 		res.status(200).json(response);
 	} catch (error) {
 		res.status(500).json({ error: error.message });
