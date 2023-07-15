@@ -16,7 +16,7 @@ const SearchBar = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		dispatch(getCountryByName(name));
-		console.log(name);
+		setName('');
 	};
 
 	return (

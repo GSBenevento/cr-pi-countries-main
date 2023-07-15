@@ -2,13 +2,20 @@
     display: grid;
     border: 1px solid black;
     width: auto;
-    height: 50%;
+    height: 45%;
     margin-left: 15px;
+    background-color: rgb(203, 241, 245);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
 }
 
 .link {
     text-decoration: none;
-    color: black;
+    color: inherit;
+}
+
+.divTransform {
+    transition: transform 0.2s;
 }
 
 .img {
@@ -20,8 +27,10 @@
 .text {
     width: 13rem;
     height: auto;
+    font-weight: bold;
+    
 }
 
 .container:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
 }

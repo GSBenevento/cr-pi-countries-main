@@ -1,0 +1,27 @@
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    background-color: rgb(227, 253, 253);
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 7px;
+}
+
+.filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.filter select {
+    width: 95%;
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color:rgb(166, 227, 233);
+    color: black
+}

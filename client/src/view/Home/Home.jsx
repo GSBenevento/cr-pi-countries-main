@@ -51,61 +51,63 @@ const Home = () => {
 
 	return (
 		<div className={style.container}>
-			<select placeholder='Continent' onChange={handleFilterContinent}>
-				<option value={'AllCountries'}>All Countries</option>
-				<option value={'Africa'}>Africa</option>
-				<option value={'Antarctica'}>Antarctica</option>
-				<option value={'Asia'}>Asia</option>
-				<option value={'Europe'}>Europe</option>
-				<option value={'North America'}>North America</option>
-				<option value={'Oceania'}>Oceania</option>
-				<option value={'South America'}>South America</option>
-			</select>
+			<div className={style.filter}>
+				<select placeholder='Continent' onChange={handleFilterContinent}>
+					<option value={'AllCountries'}>All Countries</option>
+					<option value={'Africa'}>Africa</option>
+					<option value={'Antarctica'}>Antarctica</option>
+					<option value={'Asia'}>Asia</option>
+					<option value={'Europe'}>Europe</option>
+					<option value={'North America'}>North America</option>
+					<option value={'Oceania'}>Oceania</option>
+					<option value={'South America'}>South America</option>
+				</select>
 
-			<select onChange={handleFilterActivities}>
-				{[
-					'Activities',
-					'allActivities',
-					'Sightseeing',
-					'Swimming',
-					'Hiking',
-					'Exploring',
-					'Visiting monuments',
-					'Trying local cuisine',
-					'Taking photographs',
-					'Shopping',
-					'Relaxing on the beach',
-					'Enjoying nature',
-					'Doing water sports',
-					'Visiting museums',
-					'Exploring local markets',
-					'Wildlife watching',
-					'Participating in cultural festivals',
-					'Engaging in historical tourism',
-					'Practicing outdoor sports',
-					'Having a picnic',
-					'Visiting theme parks',
-					'Exploring the nightlife',
-				].map((activity) => (
-					<option key={activity} value={activity}>
-						{activity}
-					</option>
-				))}
-			</select>
+				<select onChange={handleFilterActivities}>
+					{[
+						'Activities',
+						'allActivities',
+						'Sightseeing',
+						'Swimming',
+						'Hiking',
+						'Exploring',
+						'Visiting monuments',
+						'Trying local cuisine',
+						'Taking photographs',
+						'Shopping',
+						'Relaxing on the beach',
+						'Enjoying nature',
+						'Doing water sports',
+						'Visiting museums',
+						'Exploring local markets',
+						'Wildlife watching',
+						'Participating in cultural festivals',
+						'Engaging in historical tourism',
+						'Practicing outdoor sports',
+						'Having a picnic',
+						'Visiting theme parks',
+						'Exploring the nightlife',
+					].map((activity) => (
+						<option key={activity} value={activity}>
+							{activity}
+						</option>
+					))}
+				</select>
 
-			<select placeholder='OrderByName' onChange={handleOrderByName}>
-				<option value={'AllCountries'}>Alphabetical order</option>
-				<option value={'A'}>Ascending</option>
-				<option value={'D'}>Descending</option>
-			</select>
+				<select placeholder='OrderByName' onChange={handleOrderByName}>
+					<option value={'AllCountries'}>Alphabetical order</option>
+					<option value={'A'}>Ascending</option>
+					<option value={'D'}>Descending</option>
+				</select>
 
-			<select
-				placeholder='OrderByPopulation'
-				onChange={handleOrderByPopulation}>
-				<option value={'AllCountries'}>Population order</option>
-				<option value={'A'}>Ascending</option>
-				<option value={'D'}>Descending</option>
-			</select>
+				<select
+					placeholder='OrderByPopulation'
+					onChange={handleOrderByPopulation}>
+					<option value={'AllCountries'}>Population order</option>
+					<option value={'A'}>Ascending</option>
+					<option value={'D'}>Descending</option>
+				</select>
+			</div>
 
 			<CardsContainer pageElements={pageElements} />
 

@@ -1,19 +1,18 @@
-import Activity from '../Activity/Activity';
-import style from './ActivitiesContainer.module.css';
+import ActivityDetail from '../ActivityDetail/ActivityDetail';
+import style from './ActivitiesContainerFromDetail.module.css';
 
-const ActivitiesContainer = ({ activities }) => {
+const ActivitiesContainerForDetail = ({ activities }) => {
 	return (
 		<div className={style.container}>
 			{activities?.map((activity) => {
 				return (
-					<Activity
+					<ActivityDetail
 						key={activity.id}
 						id={activity.id}
 						name={activity.name}
 						difficulty={activity.difficulty}
 						duration={activity.duration}
 						season={activity.season}
-						Countries={activity.Countries}
 					/>
 				);
 			})}
@@ -21,4 +20,4 @@ const ActivitiesContainer = ({ activities }) => {
 	);
 };
 
-export default ActivitiesContainer;
+export default ActivitiesContainerForDetail;

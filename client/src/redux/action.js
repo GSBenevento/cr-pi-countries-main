@@ -8,6 +8,7 @@ import {
 	ORDER_COUNTRIES_BY_POPULATION,
 	GET_COUNTRY_BY_NAME,
 	GET_ACTIVITIES,
+	ADD_ACTIVITY,
 } from './actionTypes';
 
 const getCountries = () => {
@@ -92,6 +93,19 @@ const getActivities = () => {
 	};
 };
 
+const addActivity = (activityData) => {
+	const endpoint = 'http://localhost:3001/activities';
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.post(endpoint, activityData);
+			console.log(data);
+			return data;
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+};
+
 export {
 	getCountries,
 	getCountriesById,
@@ -101,4 +115,5 @@ export {
 	orderCountriesByName,
 	orderCountriesByPopulation,
 	getActivities,
+	addActivity,
 };

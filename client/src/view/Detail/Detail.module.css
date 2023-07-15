@@ -1,0 +1,35 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-color: rgb(227, 253, 253);
+}
+
+.div1 {
+    grid-area: 1 / 1 / 4 / 4;
+}
+
+.div2 {
+    grid-area: 1 / 4 / 4 / 7;
+}
+
+.div3 {
+    grid-area: 4 / 1 / 6 / 7;
+}
+
+.img{
+    width: 80%;
+    height: 80%;
+    margin-left: 50px;
+    margin-top: 30px;
+    
+}
+
+.info{
+    width: 80%;
+    height: 80%;
+    margin-top: 30px;
+    
+}

@@ -7,6 +7,7 @@ import {
 	ORDER_COUNTRIES_BY_NAME,
 	ORDER_COUNTRIES_BY_POPULATION,
 	GET_ACTIVITIES,
+	ADD_ACTIVITY,
 } from './actionTypes';
 
 const initialState = {
@@ -109,6 +110,10 @@ const reducer = (state = initialState, action) => {
 				...state,
 				activities: action.payload,
 				allActivities: action.payload,
+			};
+		case ADD_ACTIVITY:
+			return {
+				...state,
 			};
 		default:
 			return { ...state };
