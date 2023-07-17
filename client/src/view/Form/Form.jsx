@@ -11,6 +11,7 @@ const Form = () => {
 	const countries = useSelector((state) => state.countries);
 	const [checkedDifficulty, setCheckedDifficulty] = useState('');
 	const [checkedSeason, setCheckedSeason] = useState('');
+	const [errors, setErrors] = useState({});
 
 	const [formData, setFormData] = useState({
 		name: '',
@@ -30,6 +31,12 @@ const Form = () => {
 			...formData,
 			[event.target.name]: event.target.value,
 		});
+		setErrors(
+			validate({
+				...formData,
+				[event.target.name]: event.target.value,
+			})
+		);
 	};
 
 	const handleCheckDifficulty = (event) => {
@@ -67,10 +74,22 @@ const Form = () => {
 	};
 
 	const handleSelectCountry = (event) => {
+		const selectedCountryId = event.target.value;
+
+		if (formData.countryIds.includes(selectedCountryId)) {
+			return;
+		}
+
 		setFormData({
 			...formData,
 			countryIds: [...formData.countryIds, event.target.value],
 		});
+		setErrors(
+			validate({
+				...formData,
+				countryIds: [...formData.countryIds, event.target.value],
+			})
+		);
 	};
 
 	const handleSelectActivity = (event) => {
@@ -84,7 +103,6 @@ const Form = () => {
 		event.preventDefault();
 		console.log(formData);
 		dispatch(addActivity(formData));
-		alert('actividad creada!');
 		setFormData({
 			name: '',
 			difficulty: '',
@@ -93,6 +111,20 @@ const Form = () => {
 			countryIds: [],
 		});
 		dispatch(getActivities());
+	};
+
+	const validate = (data) => {
+		let errors = {};
+		const durationRegex = /^(?:[1-9]|1\d|2[0-3])$/;
+
+		if (!durationRegex.test(data.duration)) {
+			errors.duration = 'It has to be a number from 1 to 23';
+		}
+		if (data.countryIds.find((id) => formData.countryIds.includes(id))) {
+			errors.countryIds = 'The selected country has already been entered';
+		}
+
+		return errors;
 	};
 
 	return (
@@ -140,6 +172,7 @@ const Form = () => {
 								</option>
 							))}
 						</select>
+						{errors.countryIds && <p className='error'>{errors.countryIds}</p>}
 					</div>
 					<div>
 						<label htmlFor='difficulty'>Difficulty: </label>
@@ -177,6 +210,7 @@ const Form = () => {
 							name='duration'
 							onChange={handleChange}
 						/>
+						{errors.duration && <p className='error'>{errors.duration}</p>}
 					</div>
 					<ul>
 						<li>{formData.countryIds.map((country) => country + ', ')}</li>
