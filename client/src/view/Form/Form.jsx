@@ -99,10 +99,9 @@ const Form = () => {
 		});
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log(formData);
-		dispatch(addActivity(formData));
+		await dispatch(addActivity(formData));
 		setFormData({
 			name: '',
 			difficulty: '',
@@ -126,6 +125,15 @@ const Form = () => {
 		}
 
 		return errors;
+	};
+
+	const handleDeleteCountry = (country) => {
+		// Eliminar el país de formData.countryIds
+		const updatedCountryIds = formData.countryIds.filter((c) => c !== country);
+		setFormData({
+			...formData,
+			countryIds: updatedCountryIds,
+		});
 	};
 
 	return (
@@ -213,9 +221,16 @@ const Form = () => {
 						/>
 						{errors.duration && <p className='error'>{errors.duration}</p>}
 					</div>
+
 					<ul>
-						<li>{formData.countryIds.map((country) => country + ', ')}</li>
+						{formData.countryIds.map((country) => (
+							<li key={country}>
+								{country}
+								<button onClick={() => handleDeleteCountry(country)}>X</button>
+							</li>
+						))}
 					</ul>
+
 					<button type='submit'>Submit</button>
 				</form>
 			</div>

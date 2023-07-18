@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { Home, Detail, Form, Landing } from './view/index';
+import { Home, Detail, Form, Landing, DetailActivities } from './view/index';
 import NavBar from './components/NavBar/NavBar';
 import style from './App.module.css';
 
@@ -15,6 +15,7 @@ function App() {
 				<Route path='/home' element={<Home />} />
 				<Route path='/home/:id' element={<Detail />} />
 				<Route path='/form' element={<Form />} />
+				<Route path='/activities/:id' element={<DetailActivities />} />
 			</Routes>
 		</div>
 	);

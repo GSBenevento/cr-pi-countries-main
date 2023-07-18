@@ -10,6 +10,7 @@ import {
 	GET_ACTIVITIES,
 	RESET,
 	DELETE_ACTIVITY,
+	GET_ACTIVITY_BY_ID,
 } from './actionTypes';
 
 const getCountries = () => {
@@ -107,6 +108,19 @@ const addActivity = (activityData) => {
 	};
 };
 
+const getActivitiesById = (id) => {
+	const endpoint = 'http://localhost:3001/activities';
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.get(`${endpoint}/${id}`);
+
+			return dispatch({ type: GET_ACTIVITY_BY_ID, payload: data });
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+};
+
 const deleteActivity = (id) => {
 	const endpoint = 'http://localhost:3001/activities';
 	return async (dispatch) => {
@@ -137,5 +151,6 @@ export {
 	getActivities,
 	addActivity,
 	deleteActivity,
+	getActivitiesById,
 	reset,
 };

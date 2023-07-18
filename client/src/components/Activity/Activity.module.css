@@ -22,3 +22,8 @@
 .container ul li {
     margin-bottom: 0.5rem;
 }
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}

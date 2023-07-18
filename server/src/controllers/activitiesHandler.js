@@ -44,6 +44,27 @@ const getActivities = async (req, res) => {
 	}
 };
 
+const getActivitiesById = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		if (id) {
+			const activity = await Activity.findByPk(id, {
+				include: [
+					{
+						model: Country,
+						through: { attributes: [] },
+					},
+				],
+				attributes: { exclude: ['country_activity'] },
+			});
+			res.status(200).json(activity);
+		}
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
 const deleteActivities = async (req, res) => {
 	try {
 		const { id } = req.params;
@@ -61,4 +82,5 @@ module.exports = {
 	postActivities,
 	getActivities,
 	deleteActivities,
+	getActivitiesById,
 };

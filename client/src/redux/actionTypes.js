@@ -8,4 +8,5 @@ export const GET_COUNTRY_BY_NAME = 'GET_COUNTRY_BY_NAME';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 export const DELETE_ACTIVITY = 'DELETE_ACTIVITY';
+export const GET_ACTIVITY_BY_ID = 'GET_ACTIVITY_BY_ID';
 export const RESET = 'RESET';

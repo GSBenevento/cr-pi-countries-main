@@ -9,6 +9,7 @@ import {
 	GET_ACTIVITIES,
 	ADD_ACTIVITY,
 	DELETE_ACTIVITY,
+	GET_ACTIVITY_BY_ID,
 	RESET,
 } from './actionTypes';
 
@@ -18,6 +19,7 @@ const initialState = {
 	detail: [],
 	activities: [],
 	allActivities: [],
+	detailActivity: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -122,9 +124,19 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+
 		case DELETE_ACTIVITY:
 			return {
 				...state,
+				activities: state.activities.filter(
+					(activity) => activity.id !== action.payload
+				),
+			};
+
+		case GET_ACTIVITY_BY_ID:
+			return {
+				...state,
+				detailActivity: action.payload,
 			};
 
 		case RESET:
