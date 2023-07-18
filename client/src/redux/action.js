@@ -8,7 +8,7 @@ import {
 	ORDER_COUNTRIES_BY_POPULATION,
 	GET_COUNTRY_BY_NAME,
 	GET_ACTIVITIES,
-	ADD_ACTIVITY,
+	RESET,
 } from './actionTypes';
 
 const getCountries = () => {
@@ -95,14 +95,20 @@ const getActivities = () => {
 
 const addActivity = (activityData) => {
 	const endpoint = 'http://localhost:3001/activities';
-	return async (dispatch) => {
+	return async () => {
 		try {
 			const { data } = await axios.post(endpoint, activityData);
-			console.log(data);
+
 			return data;
 		} catch (error) {
 			console.log(error.message);
 		}
+	};
+};
+
+const reset = () => {
+	return {
+		type: RESET,
 	};
 };
 
@@ -116,4 +122,5 @@ export {
 	orderCountriesByPopulation,
 	getActivities,
 	addActivity,
+	reset,
 };

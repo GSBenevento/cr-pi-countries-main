@@ -8,6 +8,7 @@ import {
 	ORDER_COUNTRIES_BY_POPULATION,
 	GET_ACTIVITIES,
 	ADD_ACTIVITY,
+	RESET,
 } from './actionTypes';
 
 const initialState = {
@@ -40,33 +41,33 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case FILTER_BY_CONTINENT:
-			const allCountries = [...state.allCountries];
+			const allCountries1 = [...state.countries];
+			const allCountries2 = [...state.allCountries];
 			const countriesByContinent =
 				action.payload === 'AllCountries'
-					? allCountries
-					: allCountries.filter(
+					? allCountries2
+					: allCountries1.filter(
 							(country) => country.continent === action.payload
 					  );
 			return {
 				...state,
 				countries: countriesByContinent,
 			};
+
 		case FILTER_BY_ACTIVITY:
-			const allCountriesCopy = [...state.allCountries];
-			console.log('allCountriesCopy:', allCountriesCopy);
-			console.log('action.payload:', action.payload);
+			const allCountriesCopy1 = [...state.countries];
+			const allCountriesCopy2 = [...state.allCountries];
+
 			const countriesByActivities =
 				action.payload === 'Activities'
-					? allCountriesCopy
+					? allCountriesCopy2
 					: action.payload === 'allActivities'
-					? allCountriesCopy.filter((country) => country.Activities.length > 0)
-					: allCountriesCopy.filter((country) =>
+					? allCountriesCopy1.filter((country) => country.Activities.length > 0)
+					: allCountriesCopy1.filter((country) =>
 							country.Activities.some(
 								(activity) => activity.name === action.payload
 							)
 					  );
-
-			console.log('countriesByActivities:', countriesByActivities);
 
 			return {
 				...state,
@@ -74,47 +75,59 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case ORDER_COUNTRIES_BY_NAME:
-			const allCountriesCopyByName = [...state.allCountries];
+			const allCountriesCopyByName1 = [...state.allCountries];
+			const allCountriesCopyByName2 = [...state.countries];
 			return {
 				...state,
 				countries:
 					action.payload === 'AllCountries'
-						? allCountriesCopyByName
+						? allCountriesCopyByName1
 						: action.payload === 'A'
-						? allCountriesCopyByName.sort((a, b) =>
+						? allCountriesCopyByName2.sort((a, b) =>
 								a.name.localeCompare(b.name)
 						  )
-						: allCountriesCopyByName.sort((a, b) =>
+						: allCountriesCopyByName2.sort((a, b) =>
 								b.name.localeCompare(a.name)
 						  ),
 				//Al utilizar localeCompare(), te aseguras de que las cadenas de texto
 				//se comparen correctamente en función del orden alfabético.
 			};
+
 		case ORDER_COUNTRIES_BY_POPULATION:
-			const allCountriesCopyByPopulation = [...state.allCountries];
+			const allCountriesCopyByPopulation1 = [...state.allCountries];
+			const allCountriesCopyByPopulation2 = [...state.countries];
 			return {
 				...state,
 				countries:
 					action.payload === 'AllCountries'
-						? allCountriesCopyByPopulation
+						? allCountriesCopyByPopulation1
 						: action.payload == 'A'
-						? allCountriesCopyByPopulation.sort(
+						? allCountriesCopyByPopulation2.sort(
 								(a, b) => a.population - b.population
 						  )
-						: allCountriesCopyByPopulation.sort(
+						: allCountriesCopyByPopulation2.sort(
 								(a, b) => b.population - a.population
 						  ),
 			};
+
 		case GET_ACTIVITIES:
 			return {
 				...state,
 				activities: action.payload,
 				allActivities: action.payload,
 			};
+
 		case ADD_ACTIVITY:
 			return {
 				...state,
 			};
+
+		case RESET:
+			return {
+				...state,
+				countries: [...state.allCountries],
+			};
+
 		default:
 			return { ...state };
 	}

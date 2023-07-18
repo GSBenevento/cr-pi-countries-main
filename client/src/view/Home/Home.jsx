@@ -8,6 +8,7 @@ import {
 	filterByActivity,
 	orderCountriesByName,
 	orderCountriesByPopulation,
+	reset,
 } from '../../redux/action';
 import Paginado from '../../components/Paginado/Paginado';
 
@@ -30,23 +31,23 @@ const Home = () => {
 	};
 
 	const handleFilterContinent = (event) => {
-		event.preventDefault();
 		dispatch(filterByContinent(event.target.value));
 	};
 
 	const handleFilterActivities = (event) => {
-		event.preventDefault();
 		dispatch(filterByActivity(event.target.value));
 	};
 
 	const handleOrderByName = (event) => {
-		event.preventDefault();
 		dispatch(orderCountriesByName(event.target.value));
 	};
 
 	const handleOrderByPopulation = (event) => {
-		event.preventDefault();
 		dispatch(orderCountriesByPopulation(event.target.value));
+	};
+
+	const handleSubmit = () => {
+		dispatch(reset());
 	};
 
 	return (
@@ -107,6 +108,9 @@ const Home = () => {
 					<option value={'A'}>Ascending</option>
 					<option value={'D'}>Descending</option>
 				</select>
+				<button onClick={handleSubmit} className={style.myButton}>
+					Reset
+				</button>
 			</div>
 
 			<CardsContainer pageElements={pageElements} />

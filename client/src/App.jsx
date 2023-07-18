@@ -8,7 +8,7 @@ function App() {
 	const location = useLocation();
 
 	return (
-		<div>
+		<div className={style.container}>
 			{location.pathname !== '/' && <NavBar />}
 			<Routes>
 				<Route exact path='/' element={<Landing />} />
