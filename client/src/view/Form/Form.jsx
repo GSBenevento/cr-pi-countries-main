@@ -110,6 +110,7 @@ const Form = () => {
 			season: '',
 			countryIds: [],
 		});
+		alert('activity created');
 		dispatch(getActivities());
 	};
 

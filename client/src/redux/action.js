@@ -9,6 +9,7 @@ import {
 	GET_COUNTRY_BY_NAME,
 	GET_ACTIVITIES,
 	RESET,
+	DELETE_ACTIVITY,
 } from './actionTypes';
 
 const getCountries = () => {
@@ -106,6 +107,19 @@ const addActivity = (activityData) => {
 	};
 };
 
+const deleteActivity = (id) => {
+	const endpoint = 'http://localhost:3001/activities';
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.delete(`${endpoint}/${id}`);
+
+			return dispatch({ type: DELETE_ACTIVITY, payload: data });
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+};
+
 const reset = () => {
 	return {
 		type: RESET,
@@ -122,5 +136,6 @@ export {
 	orderCountriesByPopulation,
 	getActivities,
 	addActivity,
+	deleteActivity,
 	reset,
 };

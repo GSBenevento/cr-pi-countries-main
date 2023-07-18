@@ -8,6 +8,7 @@ import {
 	ORDER_COUNTRIES_BY_POPULATION,
 	GET_ACTIVITIES,
 	ADD_ACTIVITY,
+	DELETE_ACTIVITY,
 	RESET,
 } from './actionTypes';
 
@@ -118,6 +119,10 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case ADD_ACTIVITY:
+			return {
+				...state,
+			};
+		case DELETE_ACTIVITY:
 			return {
 				...state,
 			};

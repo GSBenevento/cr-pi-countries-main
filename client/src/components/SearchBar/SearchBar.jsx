@@ -24,12 +24,12 @@ const SearchBar = () => {
 			<input
 				type='search'
 				name='search'
-				placeholder='Buscar...'
+				placeholder='Search...'
 				value={name}
 				onChange={handleChange}
 			/>
 			<button type='submit' onClick={handleSubmit}>
-				Buscar
+				Search
 			</button>
 		</form>
 	);
