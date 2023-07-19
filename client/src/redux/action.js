@@ -11,6 +11,8 @@ import {
 	RESET,
 	DELETE_ACTIVITY,
 	GET_ACTIVITY_BY_ID,
+	UPDATE_ACTIVITY_SUCCESS,
+	UPDATE_ACTIVITY_FAILURE,
 } from './actionTypes';
 
 const getCountries = () => {
@@ -134,6 +136,19 @@ const deleteActivity = (id) => {
 	};
 };
 
+const updateActivity = (id, FormData) => {
+	const endpoint = 'http://localhost:3001/activities';
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.put(`${endpoint}/${id}`, FormData);
+
+			dispatch({ type: UPDATE_ACTIVITY_SUCCESS, payload: data });
+		} catch (error) {
+			dispatch({ type: UPDATE_ACTIVITY_FAILURE, payload: error.message });
+		}
+	};
+};
+
 const reset = () => {
 	return {
 		type: RESET,
@@ -152,5 +167,6 @@ export {
 	addActivity,
 	deleteActivity,
 	getActivitiesById,
+	updateActivity,
 	reset,
 };

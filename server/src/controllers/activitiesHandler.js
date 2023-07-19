@@ -78,9 +78,32 @@ const deleteActivities = async (req, res) => {
 	}
 };
 
+const updateActivities = async (req, res) => {
+	try {
+		const { name, difficulty, duration, season } = req.body;
+		const { id } = req.params;
+
+		if (!id) throw new Error('Missing activity ID');
+
+		const activity = await Activity.findByPk(id);
+		if (!activity) throw new Error('Activity not found');
+
+		if (name) activity.name = name;
+		if (difficulty) activity.difficulty = difficulty;
+		if (duration) activity.duration = duration;
+		if (season) activity.season = season;
+		await activity.save();
+
+		res.status(200).json(activity);
+	} catch (error) {
+		res.status(400).json({ error: error.message });
+	}
+};
+
 module.exports = {
 	postActivities,
 	getActivities,
 	deleteActivities,
 	getActivitiesById,
+	updateActivities,
 };

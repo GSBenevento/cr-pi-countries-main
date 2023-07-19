@@ -12,7 +12,6 @@ const Form = () => {
 	const [checkedDifficulty, setCheckedDifficulty] = useState('');
 	const [checkedSeason, setCheckedSeason] = useState('');
 	const [errors, setErrors] = useState({});
-	const [isFormValid, setIsFormValid] = useState(false);
 
 	const [formData, setFormData] = useState({
 		name: '',

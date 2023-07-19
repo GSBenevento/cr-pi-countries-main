@@ -10,6 +10,8 @@ import {
 	ADD_ACTIVITY,
 	DELETE_ACTIVITY,
 	GET_ACTIVITY_BY_ID,
+	UPDATE_ACTIVITY_SUCCESS,
+	UPDATE_ACTIVITY_FAILURE,
 	RESET,
 } from './actionTypes';
 
@@ -20,6 +22,7 @@ const initialState = {
 	activities: [],
 	allActivities: [],
 	detailActivity: [],
+	error: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -138,6 +141,22 @@ const reducer = (state = initialState, action) => {
 				...state,
 				detailActivity: action.payload,
 			};
+
+		case UPDATE_ACTIVITY_SUCCESS:
+			const updateActivity = state.activities.map((activity) => {
+				if (activity.id === action.payload.id) {
+					return action.payload;
+				}
+				return activity;
+			});
+			return {
+				...state,
+				activities: updateActivity,
+				error: null,
+			};
+
+		case UPDATE_ACTIVITY_FAILURE:
+			return { ...state, error: action.payload };
 
 		case RESET:
 			return {

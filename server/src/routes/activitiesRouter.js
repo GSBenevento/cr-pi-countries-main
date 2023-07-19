@@ -4,6 +4,7 @@ const {
 	getActivities,
 	deleteActivities,
 	getActivitiesById,
+	updateActivities,
 } = require('../controllers/activitiesHandler');
 
 const userRouter = Router();
@@ -15,5 +16,7 @@ userRouter.get('/:id', getActivitiesById);
 userRouter.post('/', postActivities);
 
 userRouter.delete('/:id', deleteActivities);
+
+userRouter.put('/:id', updateActivities);
 
 module.exports = userRouter;
