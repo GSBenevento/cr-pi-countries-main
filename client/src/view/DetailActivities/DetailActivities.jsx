@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteActivity, getActivitiesById } from '../../redux/action';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const DetailActivities = () => {
 	const dispatch = useDispatch();
 	const activity = useSelector((state) => state.detailActivity);
 	const { id } = useParams();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(getActivitiesById(id));
@@ -15,6 +16,7 @@ const DetailActivities = () => {
 
 	const handleDelete = () => {
 		dispatch(deleteActivity(activity.id));
+		navigate('/form');
 	};
 
 	return (

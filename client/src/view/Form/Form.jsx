@@ -12,6 +12,7 @@ const Form = () => {
 	const [checkedDifficulty, setCheckedDifficulty] = useState('');
 	const [checkedSeason, setCheckedSeason] = useState('');
 	const [errors, setErrors] = useState({});
+	const [isFormValid, setIsFormValid] = useState(false);
 
 	const [formData, setFormData] = useState({
 		name: '',
@@ -120,7 +121,11 @@ const Form = () => {
 		if (!durationRegex.test(data.duration)) {
 			errors.duration = 'It has to be a number from 1 to 23';
 		}
-		if (data.countryIds.find((id) => formData.countryIds.includes(id))) {
+		if (
+			data.countryIds.find(
+				(id) => data.countryIds.indexOf(id) !== data.countryIds.lastIndexOf(id)
+			)
+		) {
 			errors.countryIds = 'The selected country has already been entered';
 		}
 
@@ -231,7 +236,18 @@ const Form = () => {
 						))}
 					</ul>
 
-					<button type='submit'>Submit</button>
+					<button
+						type='submit'
+						disabled={
+							Object.keys(errors).length > 0 ||
+							!formData.name ||
+							!formData.difficulty ||
+							!formData.duration ||
+							!formData.season ||
+							formData.countryIds.length === 0
+						}>
+						Submit
+					</button>
 				</form>
 			</div>
 

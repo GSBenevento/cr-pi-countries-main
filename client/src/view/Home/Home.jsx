@@ -15,7 +15,6 @@ import Paginado from '../../components/Paginado/Paginado';
 const Home = () => {
 	const dispatch = useDispatch();
 	const countries = useSelector((state) => state.countries);
-	const activities = useSelector((state) => state.activities);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [countriesForPage, setCountriesForPage] = useState(10);
 	const start = (currentPage - 1) * countriesForPage;
