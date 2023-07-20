@@ -4,18 +4,23 @@ import style from './Paginado.module.css';
 const Paginado = ({ countriesForPage, countries, paginado, currentPage }) => {
 	const pageNumber = [];
 
+	// funcion for para la creacion de los numeros del paginado
 	for (let i = 0; i <= Math.ceil(countries / countriesForPage); i++) {
 		pageNumber.push(i);
 	}
 
+	//funcion que controla la funcion del boton prev
 	const prevPage = () => {
 		paginado(currentPage - 1);
 	};
 
+	//funcion que controla la funcion del boton next
 	const nextPage = () => {
 		paginado(currentPage + 1);
 	};
 
+	// esta funcion controla que en la paginacion de que se muestra en pantalla
+	// solo se muestre 5 numeros
 	const getDisplayPageNumbers = () => {
 		const totalPageNumber = pageNumber.length;
 		const displayPageNumbers = [];

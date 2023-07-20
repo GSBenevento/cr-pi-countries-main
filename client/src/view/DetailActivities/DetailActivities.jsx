@@ -19,7 +19,7 @@ const DetailActivities = () => {
 
 	useEffect(() => {
 		dispatch(getActivitiesById(id));
-	}, [id, dispatch, activity]);
+	}, []);
 
 	const [formData, setFormData] = useState({
 		name: '',
@@ -31,6 +31,7 @@ const DetailActivities = () => {
 	const handleDelete = () => {
 		dispatch(deleteActivity(activity.id));
 		navigate('/form');
+		alert('Deleted activity');
 	};
 
 	const validate = (data) => {
@@ -111,8 +112,8 @@ const DetailActivities = () => {
 	};
 
 	return (
-		<div>
-			<div>
+		<div className={style.parent}>
+			<div className={style.info}>
 				<h3>Activity: {activity.name}</h3>
 				<h3>Difficulty: {activity.difficulty}</h3>
 				<h3>Duration (in hours): {activity.duration}</h3>
@@ -131,9 +132,9 @@ const DetailActivities = () => {
 				<button onClick={handleDelete}>Eliminar actividad</button>
 			</div>
 
-			<div>
+			<div className={style.formPosition}>
 				<form onSubmit={handleSubmit} className={style.form}>
-					<h1>Create your activity</h1>
+					<h1>Update your activity</h1>
 					<div>
 						<label htmlFor='name'>Activity: </label>
 						<select onChange={handleSelectActivity}>
