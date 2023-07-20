@@ -132,7 +132,6 @@ const Form = () => {
 	};
 
 	const handleDeleteCountry = (country) => {
-		// Eliminar el país de formData.countryIds
 		const updatedCountryIds = formData.countryIds.filter((c) => c !== country);
 		setFormData({
 			...formData,

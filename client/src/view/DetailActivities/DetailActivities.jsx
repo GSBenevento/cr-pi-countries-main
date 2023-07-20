@@ -19,7 +19,6 @@ const DetailActivities = () => {
 
 	useEffect(() => {
 		dispatch(getActivitiesById(id));
-		console.log(activity);
 	}, [id, dispatch, activity]);
 
 	const [formData, setFormData] = useState({
@@ -47,11 +46,7 @@ const DetailActivities = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const validationErrors = validate(formData);
-		if (Object.keys(validationErrors).length > 0) {
-			setErrors(validationErrors);
-			return;
-		}
+
 		await dispatch(updateActivity(id, formData));
 		setFormData({
 			name: '',
@@ -117,22 +112,24 @@ const DetailActivities = () => {
 
 	return (
 		<div>
-			<h3>Activity: {activity.name}</h3>
-			<h3>Difficulty: {activity.difficulty}</h3>
-			<h3>Duration (in hours): {activity.duration}</h3>
-			<h3>Season: {activity.season}</h3>
-			<h3>Coutries: </h3>
-			<ul>
-				{activity &&
-					activity.Countries &&
-					activity.Countries.map((country) => (
-						<span key={country.name}>
-							{country.name},
-							<br />
-						</span>
-					))}
-			</ul>
-			<button onClick={handleDelete}>Eliminar actividad</button>
+			<div>
+				<h3>Activity: {activity.name}</h3>
+				<h3>Difficulty: {activity.difficulty}</h3>
+				<h3>Duration (in hours): {activity.duration}</h3>
+				<h3>Season: {activity.season}</h3>
+				<h3>Coutries: </h3>
+				<ul>
+					{activity &&
+						activity.Countries &&
+						activity.Countries.map((country) => (
+							<span key={country.name}>
+								{country.name},
+								<br />
+							</span>
+						))}
+				</ul>
+				<button onClick={handleDelete}>Eliminar actividad</button>
+			</div>
 
 			<div>
 				<form onSubmit={handleSubmit} className={style.form}>
@@ -207,17 +204,7 @@ const DetailActivities = () => {
 						{errors.duration && <p className='error'>{errors.duration}</p>}
 					</div>
 
-					<button
-						type='submit'
-						disabled={
-							Object.keys(errors).length > 0 ||
-							!formData.name ||
-							!formData.difficulty ||
-							!formData.duration ||
-							!formData.season
-						}>
-						Update
-					</button>
+					<button type='submit'>Update</button>
 				</form>
 			</div>
 		</div>

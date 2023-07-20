@@ -17,13 +17,14 @@ li {
 
 .a {
     text-decoration: none;
-    color: black;
+    color: #fff;
 }
 
 .number {
     padding: 5px 10px;
     border: 1px solid #ccc;
     cursor: pointer;
+    background-color: rgb(158, 48, 48);
 }
 
 .number.active {

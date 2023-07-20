@@ -1,12 +1,13 @@
-.container {
+ .container {
     display: grid;
     border: 1px solid black;
     width: auto;
     height: 45%;
     margin-left: 15px;
-    background-color: rgb(203, 241, 245);
+    background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
+    transition: all 0.25s;
 }
 
 .link {
@@ -15,7 +16,7 @@
 }
 
 .divTransform {
-    transition: transform 0.2s;
+   transform: translateY(0px);
 }
 
 .img {
@@ -33,4 +34,7 @@
 
 .container:hover{
     transform: scale(1.2);
-}
+} 
+
+
+

@@ -1,13 +1,7 @@
-html,
-body {
-    height: 100%;
-}
-
 .container {
-    background-color: rgb(227, 253, 253);
     width: 100%;
     min-height: 100vh;
-    margin-top: 7px;
+    background-image: url('../../assets/71504.jpg');
 }
 
 .filter{
@@ -17,37 +11,85 @@ body {
 }
 
 .filter select {
-    width: 95%;
+    margin-top: 15px;
+    width: 150px;
+    margin-left: 15px;
+    margin-right: 15px;
     padding: 0.3rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color:rgb(166, 227, 233);
-    color: black
+    border-radius: 25px;
+    background-color:rgb(158, 48, 48);
+    color: #fff
 }
 
+
+
 .myButton {
-    box-shadow: 0px 1px 0px 0px #f0f7fa;
-    background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
-    background-color: #33bdef;
-    border-radius: 6px;
-    border: 1px solid #057fd0;
-    display: inline-block;
+    align-items: center;
+    appearance: none;
+    background-color: rgb(158, 48, 48);
+    border-radius: 24px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: #fff;
     cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 4px 15px;
-    text-decoration: none;
-    text-shadow: 0px -1px 0px #5b6178;
+    display: inline-flex;
+    fill: currentcolor;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 38px;
+    justify-content: center;
+    letter-spacing: .25px;
+    line-height: normal;
+    max-width: 100%;
+    overflow: visible;
+    padding: 2px 24px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+    will-change: transform, opacity;
+    z-index: 0;
+    margin-top: 15px;
 }
 
 .myButton:hover {
-    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
-    background-color: #019ad2;
+    background: #f11414;
+    color: #fff;
 }
 
 .myButton:active {
-    position: relative;
-    top: 1px;
+    box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+    outline: none;
+}
+
+.myButton:focus {
+    outline: none;
+    border: 2px solid #4285f4;
+}
+
+.myButton:not(:disabled) {
+    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.myButton:not(:disabled):hover {
+    box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.myButton:not(:disabled):focus {
+    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.myButton:not(:disabled):active {
+    box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.myButton:disabled {
+    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }

@@ -28,7 +28,7 @@ const SearchBar = () => {
 				value={name}
 				onChange={handleChange}
 			/>
-			<button type='submit' onClick={handleSubmit}>
+			<button type='submit' onClick={handleSubmit} className={style.button}>
 				Search
 			</button>
 		</form>
