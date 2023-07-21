@@ -55,6 +55,8 @@ const DetailActivities = () => {
 			duration: '',
 			season: '',
 		});
+		alert('Updated activity');
+		dispatch(getActivitiesById(id));
 	};
 
 	const handleSelectActivity = (event) => {
@@ -129,7 +131,7 @@ const DetailActivities = () => {
 							</span>
 						))}
 				</ul>
-				<button onClick={handleDelete}>Eliminar actividad</button>
+				<button onClick={handleDelete}>delete activity</button>
 			</div>
 
 			<div className={style.formPosition}>
