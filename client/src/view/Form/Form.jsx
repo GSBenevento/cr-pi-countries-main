@@ -229,7 +229,11 @@ const Form = () => {
 						{formData.countryIds.map((country) => (
 							<li key={country}>
 								{country}
-								<button onClick={() => handleDeleteCountry(country)}>X</button>
+								<button
+									onClick={() => handleDeleteCountry(country)}
+									className={style.buttonX}>
+									X
+								</button>
 							</li>
 						))}
 					</ul>
