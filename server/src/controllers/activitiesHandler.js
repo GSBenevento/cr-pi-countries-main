@@ -69,6 +69,8 @@ const deleteActivities = async (req, res) => {
 	try {
 		const { id } = req.params;
 
+		if (!id) throw new Error('Missing activity ID');
+
 		const response = await Activity.findByPk(id);
 		response.destroy();
 
